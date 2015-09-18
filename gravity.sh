@@ -55,7 +55,7 @@ function createSwapFile()
 	sudo dphys-swapfile swapon
 	}
 	
-if [[ -f /etc/dphys-swapfile ]];then
+command -v dphys-swapfile >/dev/null 2>&1 && if [[ -f /etc/dphys-swapfile ]];then
 	swapSize=$(cat /etc/dphys-swapfile | grep -m1 CONF_SWAPSIZE | cut -d'=' -f2)
 	if [[ $swapSize != 500 ]];then
 		mv /etc/dphys-swapfile /etc/dphys-swapfile.orig
